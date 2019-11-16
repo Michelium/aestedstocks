@@ -18,6 +18,7 @@
 /.web-server-pid
 ###< symfony/web-server-bundle ###
 .env.dev
+.idea/
 .idea/.gitignore
 .idea/cms.iml
 .idea/misc.xml
@@ -25,3 +26,10 @@
 .idea/php.xml
 .idea/symfony2.xml
 .idea/vcs.xml
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
