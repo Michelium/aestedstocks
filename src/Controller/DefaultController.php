@@ -2,16 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController extends AbstractController
-{
+class DefaultController extends AbstractController {
     /**
      * @Route("/", name="index")
      */
-    public function index()
-    {
+    public function index() {
+
         return $this->render('pages/index.html.twig', [
             'title' => 'Homepage',
         ]);
