@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {{ encore_entry_link_tags('admin') }}
     {{ encore_entry_script_tags('admin') }}
-    <title>{{ title|default('SET TITLE') }}</title>
+    <title>{{ websitename }} - {{ title|default('SET TITLE') }}</title>
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
@@ -16,39 +16,35 @@
 
 <div class="container-fluid">
 
-    {% block totalbody %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 
+    {% block totalbody %}
         <div class="row">
+
             {% include 'admin/sections/sidebar.html.twig' %}
 
-            <div class="col content-wrapper">
-
-                {% for label, messages in app.flashes %}
-                    {% for message in messages %}
-                        <div class="alert alert-{{ label }} alert-dismissible fade show">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-
-                {% block body %}
-                    <ul>
-                        <li>Add row</li>
-                        <li>Add col-lg-xx/col-md-xx</li>
-                        <li>Add card ("div") >></li>
-                        <li>Add card-title ("div") >> ("h5")</li>
-                        <li>Add card-body ("div") >> [content]</li>
-                    </ul>
-                {% endblock %}
+            <div class="col-lg-8 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>{{ title }}</strong>
+                    </div>
+                    <div class="card-body">
+                        {% block body %}
+                        {% endblock %}
+                    </div>
+                </div>
             </div>
-
         </div>
-
     {% endblock %}
 
 </div>
-
 {% block javascripts %}{% endblock %}
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

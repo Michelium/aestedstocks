@@ -1,153 +1,20 @@
-<div id="sidebar-container" class="hide-this sidebar-expanded d-none d-md-block">
-    <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
-    <!-- Bootstrap List Group -->
-    <ul class="list-group">
-        <!-- Separator with title -->
-        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-            <small>MAIN MENU</small>
-        </li>
-        <!-- /END Separator -->
-        <!-- Menu with submenu -->
-
-        <a href="" class="bg-dark list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-file fa-fw mr-3"></span>
-                <span class="menu-collapsed">Pages</span>
-            </div>
+<div class="col-lg-2 offset-lg-1 col-sm-12 pb-3 pb-lg-0">
+    <div class="list-group">
+        <a href="{{ path('admin_home_index') }}" class="{% if app.request.attributes.get( '_route' ) starts with 'admin_home_' %}active{% endif %} nav-link list-group-item d-flex justify-content-between align-items-center">
+            Home
+            <span class="badge badge-light badge-pill">14</span>
         </a>
-
-        <a href="" class="bg-dark list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-users fa-fw mr-3"></span>
-                <span class="menu-collapsed">Users</span>
-            </div>
+        <a href="{{ path('admin_page_index') }}" class="{% if app.request.attributes.get( '_route' ) starts with 'admin_page_' %}active{% endif %} nav-link list-group-item d-flex justify-content-between align-items-center">
+            Pages
+            <span class="badge badge-light badge-pill">14</span>
         </a>
-
-{#        <a href="#submenu1" data-toggle="collapse" aria-expanded="false"#}
-{#           class="bg-dark list-group-item list-group-item-action flex-column align-items-start">#}
-{#            <div class="d-flex w-100 justify-content-start align-items-center">#}
-{#                <span class="fas fa-list-alt fa-fw mr-3"></span>#}
-{#                <span class="menu-collapsed">Artikelen</span>#}
-{#                <i class="ml-auto fa fa-chevron-down"></i>#}
-{#            </div>#}
-{#        </a>#}
-{#        <!-- Submenu content -->#}
-{#        <div id='submenu1' class="collapse sidebar-submenu">#}
-{#            <a href="" class="list-group-item list-group-item-action bg-dark text-white">#}
-{#                <span class="menu-collapsed">Artikelen</span>#}
-{#            </a>#}
-{#            <a href="" class="list-group-item list-group-item-action bg-dark text-white">#}
-{#                <span class="menu-collapsed">Categoriën</span>#}
-{#            </a>#}
-{#        </div>#}
-{#        <a href="#submenu2" data-toggle="collapse" aria-expanded="false"#}
-{#           class="bg-dark list-group-item list-group-item-action flex-column align-items-start">#}
-{#            <div class="d-flex w-100 justify-content-start align-items-center">#}
-{#                <span class="fa fa-boxes fa-fw mr-3"></span>#}
-{#                <span class="menu-collapsed">Voorraad</span>#}
-{#                <i class="ml-auto fa fa-chevron-down"></i>#}
-{#            </div>#}
-{#        </a>#}
-{#        <!-- Submenu content -->#}
-{#        <div id='submenu2' class="collapse sidebar-submenu">#}
-{#            <a href="" class="list-group-item list-group-item-action bg-dark text-white">#}
-{#                <span class="menu-collapsed">Voorraad per artikel</span>#}
-{#            </a>#}
-{#            <a href="" class="list-group-item list-group-item-action bg-dark text-white">#}
-{#                <span class="menu-collapsed">Artikelen verkopen</span>#}
-{#            </a>#}
-{#            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">#}
-{#                <span class="menu-collapsed">Verkoopprijs berekenen</span>#}
-{#            </a>#}
-{#            <a href="" class="list-group-item list-group-item-action bg-dark text-white">#}
-{#                <span class="menu-collapsed">Afschrijving</span>#}
-{#            </a>#}
-{#        </div>#}
-{#        <a href="#submenu3" data-toggle="collapse" aria-expanded="false"#}
-{#           class="bg-dark list-group-item list-group-item-action flex-column align-items-start">#}
-{#            <div class="d-flex w-100 justify-content-start align-items-center">#}
-{#                <span class="fa fa-tasks fa-fw mr-3"></span>#}
-{#                <span class="menu-collapsed">Bestellingen</span>#}
-{#                <i class="ml-auto fa fa-chevron-down"></i>#}
-{#            </div>#}
-{#        </a>#}
-{#        <!-- Submenu content -->#}
-{#        <div id='submenu3' class="collapse sidebar-submenu">#}
-{#            <a href="" class="list-group-item list-group-item-action bg-dark text-white">#}
-{#                <span class="menu-collapsed">Invoeren</span>#}
-{#            </a>#}
-{#            <a href="" class="list-group-item list-group-item-action bg-dark text-white">#}
-{#                <span class="menu-collapsed">Openstaand</span>#}
-{#            </a>#}
-{#            <a href="" class="list-group-item list-group-item-action bg-dark text-white">#}
-{#                <span class="menu-collapsed">Bezorgd</span>#}
-{#            </a>#}
-{#        </div>#}
-{#        <a href="" class="bg-dark list-group-item list-group-item-action">#}
-{#            <div class="d-flex w-100 justify-content-start align-items-center">#}
-{#                <span class="fa fa-file-invoice-dollar fa-fw mr-3"></span>#}
-{#                <span class="menu-collapsed">Afzet</span>#}
-{#            </div>#}
-{#        </a>#}
-{#        <a href="" class="bg-dark list-group-item list-group-item-action">#}
-{#            <div class="d-flex w-100 justify-content-start align-items-center">#}
-{#                <span class="fa fa-shopping-cart fa-fw mr-3"></span>#}
-{#                <span class="menu-collapsed">Klantenbestellingen</span>#}
-{#            </div>#}
-{#        </a>#}
-{#        <!-- Separator with title -->#}
-{#        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">#}
-{#            <small>OVERIG</small>#}
-{#        </li>#}
-{#        <!-- /END Separator -->#}
-{#        <a href="#" class="bg-dark list-group-item list-group-item-action">#}
-{#            <div class="d-flex w-100 justify-content-start align-items-center">#}
-{#                <span class="fa fa-clipboard-list fa-fw mr-3"></span>#}
-{#                <span class="menu-collapsed">Updates</span>#}
-{#            </div>#}
-{#        </a>#}
-{#        <a href="" class="bg-dark list-group-item list-group-item-action">#}
-{#            <div class="d-flex w-100 justify-content-start align-items-center">#}
-{#                <span class="fas fa-comment-dots fa-fw mr-3"></span>#}
-{#                <span class="menu-collapsed">Opmerkingen</span>#}
-{#            </div>#}
-{#        </a>#}
-{#        <!-- Separator without title -->#}
-{#        <li class="list-group-item sidebar-separator menu-collapsed"></li>#}
-{#        <!-- /END Separator -->#}
-{#        <a href="" class="bg-dark list-group-item list-group-item-action">#}
-{#            <div class="d-flex w-100 justify-content-start align-items-center">#}
-{#                <span class="fa fa-smoking fa-fw mr-3"></span>#}
-{#                <span class="menu-collapsed">Shisha mode#}
-{#              </span>#}
-{#            </div>#}
-{#        </a>#}
-{#        <a href="" class="bg-dark list-group-item list-group-item-action">#}
-{#            <div class="d-flex w-100 justify-content-start align-items-center">#}
-{#                <span class="fa fa-edit fa-fw mr-3"></span>#}
-{#                <span class="menu-collapsed">Edit mode#}
-{#              </span>#}
-{#            </div>#}
-{#        </a>#}
-
-        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-            <small>OTHER</small>
-        </li>
-        <a href="" class="bg-success list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-user fa-fw mr-3"></span>
-                <span class="menu-collapsed">Profile</span>
-            </div>
+        <a href="" class="{% if app.request.attributes.get( '_route' ) starts with 'admin_article_' %}active{% endif %} nav-link list-group-item d-flex justify-content-between align-items-center">
+            Articles
+            <span class="badge badge-light badge-pill">14</span>
         </a>
-        <a href="{{ path('app_logout') }}" class="bg-danger list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-sign-out-alt fa-fw mr-3"></span>
-                <span class="menu-collapsed">Logout</span>
-            </div>
+        <a href="" class="{% if app.request.attributes.get( '_route' ) starts with 'admin_user_' %}active{% endif %} nav-link list-group-item d-flex justify-content-between align-items-center">
+            Users
+            <span class="badge badge-light badge-pill">14</span>
         </a>
-        <li class="my-5 list-group">
-            <small class="text-muted mx-auto">Michel Hamelink</small>
-            <small class="text-muted mx-auto">Version 1.0</small>
-        </li>
-    </ul>
+    </div>
 </div>

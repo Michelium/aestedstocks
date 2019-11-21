@@ -1,28 +1,29 @@
-<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #26354A">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-            data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-            aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light py-0 mb-3">
+    <a class="navbar-brand" href="{{ path('index') }}">{{ websitename }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand ml-1" style="width: 203px;" href="{{ path('admin') }}">
-        <span class="menu-collapsed">{{ websitename }}</span>
-    </a>
-    <span class="text-white">{{ title|default('SET TITLE') }}</span>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-
-            {#MOBILE NAVBAR#}
-            <li class="nav-item dropdown d-sm-block d-md-none">
-                <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Artikelen
-                </a>
-                <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
-                    <a class="dropdown-item" href="">Artikelen</a>
-                    <a class="dropdown-item" href="">Categoriën</a>
-                </div>
+            <li class="nav-item {% if app.request.attributes.get( '_route' ) starts with 'admin_home_' %}active{% endif %}">
+                <a class="nav-link" href="{{ path('admin_home_index') }}">Home</a>
             </li>
-
+            <li class="nav-item {% if app.request.attributes.get( '_route' ) starts with 'admin_page_' %}active{% endif %}">
+                <a class="nav-link" href="{{ path('admin_page_index') }}">Pages</a>
+            </li>
+            <li class="nav-item {% if app.request.attributes.get( '_route' ) starts with 'admin_article_' %}active{% endif %}">
+                <a class="nav-link" href="#">Articles</a>
+            </li>
+            <li class="nav-item {% if app.request.attributes.get( '_route' ) starts with 'admin_user_' %}active{% endif %}">
+                <a class="nav-link" href="#">Users</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <span class="navbar-text">Welcome, USERNAME</span>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+            </li>
         </ul>
     </div>
 </nav>
