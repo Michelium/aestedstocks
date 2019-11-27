@@ -1,0 +1,12 @@
+# ADMIN OTHER:
+welcome: Welcome
+logout: Logout
+
+# PAGE NAMES:
+home: Home
+pages: Pages
+articles: Articles
+users: Users
+
+# Pages:
+page_create: Create page

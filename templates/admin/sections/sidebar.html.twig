@@ -1,19 +1,19 @@
 <div class="col-lg-2 offset-lg-1 col-sm-12 pb-3 pb-lg-0">
     <div class="list-group">
         <a href="{{ path('admin_home_index') }}" class="{% if app.request.attributes.get( '_route' ) starts with 'admin_home_' %}active{% endif %} nav-link list-group-item d-flex justify-content-between align-items-center">
-            Home
+            {{ 'home'|trans }}
             <span class="badge badge-light badge-pill">14</span>
         </a>
         <a href="{{ path('admin_page_index') }}" class="{% if app.request.attributes.get( '_route' ) starts with 'admin_page_' %}active{% endif %} nav-link list-group-item d-flex justify-content-between align-items-center">
-            Pages
+            {{ 'pages'|trans }}
             <span class="badge badge-light badge-pill">14</span>
         </a>
         <a href="" class="{% if app.request.attributes.get( '_route' ) starts with 'admin_article_' %}active{% endif %} nav-link list-group-item d-flex justify-content-between align-items-center">
-            Articles
+            {{ 'articles'|trans }}
             <span class="badge badge-light badge-pill">14</span>
         </a>
         <a href="" class="{% if app.request.attributes.get( '_route' ) starts with 'admin_user_' %}active{% endif %} nav-link list-group-item d-flex justify-content-between align-items-center">
-            Users
+            {{ 'users'|trans }}
             <span class="badge badge-light badge-pill">14</span>
         </a>
     </div>
