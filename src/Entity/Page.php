@@ -5,9 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
+ * @UniqueEntity("title")
+ * @UniqueEntity("slug")
  */
 class Page
 {
@@ -24,9 +27,14 @@ class Page
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $slug;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $content;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Page", inversedBy="children", cascade={"persist", "remove"})
@@ -46,15 +54,27 @@ class Page
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $modified_at;
+    private $modified_at = null;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\PageContentBlock", mappedBy="page", orphanRemoval=true)
      */
     private $pageContentBlocks;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="pages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $created_by;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     */
+    private $modified_by;
+
     public function __construct()
     {
+        $this->created_at = new \DateTime('now');
         $this->pageContentBlocks = new ArrayCollection();
     }
 
@@ -85,6 +105,20 @@ class Page
         $this->slug = $slug;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContent() {
+        return $this->content;
+    }
+
+    /**
+     * @param mixed $content
+     */
+    public function setContent($content): void {
+        $this->content = $content;
     }
 
     public function getParentPage(): ?self
@@ -168,6 +202,30 @@ class Page
                 $pageContentBlock->setPage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->created_by;
+    }
+
+    public function setCreatedBy(?User $created_by): self
+    {
+        $this->created_by = $created_by;
+
+        return $this;
+    }
+
+    public function getModifiedBy(): ?User
+    {
+        return $this->modified_by;
+    }
+
+    public function setModifiedBy(?User $modified_by): self
+    {
+        $this->modified_by = $modified_by;
 
         return $this;
     }

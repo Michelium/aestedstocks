@@ -1,6 +1,12 @@
 # ADMIN OTHER:
 welcome: Welcome
 logout: Logout
+save: Save
+cancel: Cancel
+actions: Actions
+edit: Edit
+create: Create
+delete: Delete
 
 # PAGE NAMES:
 home: Home
@@ -8,5 +14,15 @@ pages: Pages
 articles: Articles
 users: Users
 
+# FORM & TABLE FIELDS:
+Title: Title
+Slug: Slug
+Content: Content
+Created_at: 'Created at'
+Modified_at: 'Modified at'
+Created_by: 'Created by'
+Modified_by: 'Modified by'
+
 # Pages:
 page_create: Create page
+page_created_success: The page has been created successfully!

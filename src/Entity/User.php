@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -12,6 +14,7 @@ class User implements UserInterface {
 
     public function __construct() {
         $this->created_At = new \DateTime();
+        $this->pages = new ArrayCollection();
     }
 
     /**
@@ -51,6 +54,26 @@ class User implements UserInterface {
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $modified_at;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="created_by")
+     */
+    private $pages;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lastname;
+
+
+    public function getFullname() {
+        return $this->firstname . ' ' .  $this->lastname;
+    }
 
     public function getId(): ?int {
         return $this->id;
@@ -142,6 +165,61 @@ class User implements UserInterface {
 
     public function setModifiedAt(\DateTimeInterface $modified_at): self {
         $this->modified_at = $modified_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Page[]
+     */
+    public function getPages(): Collection
+    {
+        return $this->pages;
+    }
+
+    public function addPage(Page $page): self
+    {
+        if (!$this->pages->contains($page)) {
+            $this->pages[] = $page;
+            $page->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removePage(Page $page): self
+    {
+        if ($this->pages->contains($page)) {
+            $this->pages->removeElement($page);
+            // set the owning side to null (unless already changed)
+            if ($page->getCreatedBy() === $this) {
+                $page->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(?string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(?string $lastname): self
+    {
+        $this->lastname = $lastname;
 
         return $this;
     }
