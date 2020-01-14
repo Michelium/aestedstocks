@@ -1,0 +1,27 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/michelcms/public/build/runtime.js",
+        "/michelcms/public/build/vendors~admin~app.js",
+        "/michelcms/public/build/app.js"
+      ],
+      "css": [
+        "/michelcms/public/build/vendors~admin~app.css",
+        "/michelcms/public/build/app.css"
+      ]
+    },
+    "admin": {
+      "js": [
+        "/michelcms/public/build/runtime.js",
+        "/michelcms/public/build/vendors~admin~app.js",
+        "/michelcms/public/build/vendors~admin.js",
+        "/michelcms/public/build/admin.js"
+      ],
+      "css": [
+        "/michelcms/public/build/vendors~admin~app.css",
+        "/michelcms/public/build/admin.css"
+      ]
+    }
+  }
+}
