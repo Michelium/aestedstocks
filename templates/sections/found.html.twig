@@ -1,0 +1,37 @@
+<div class="alert alert-success">
+    <p class="m-0">Product gevonden!</p>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h5>Productinformatie:</h5>
+        <table class="table table-sm table-hover">
+            <tr>
+                <th style="width: 20%">Naam</th>
+                <td>{{ product.name }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ product.code }}</td>
+            </tr>
+            {% if product.description is not empty %}
+                <tr>
+                    <th>Beschrijving</th>
+                    <td>{{ product.description }}</td>
+                </tr>
+            {% endif %}
+            <tr>
+                <th>Huidige voorraad</th>
+                <td>{{ product.stock }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <hr>
+        <h5>Kies uit een van de volgende opties</h5>
+        <button type="button" class="btn btn-info stock-update-product-button">Voorraad aanpassen <i class="fa fa-cabinet-filing"></i></button>
+        <button type="button" class="btn btn-warning update-product-button">Bewerken <i class="fa fa-pencil"></i></button>
+        <button type="button" class="btn btn-danger delete-product-button">Verwijderen <i class="fa fa-trash"></i></button>
+    </div>
+</div>

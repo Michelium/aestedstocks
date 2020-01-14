@@ -9,6 +9,9 @@
             <li class="nav-item {% if app.request.attributes.get( '_route' ) starts with 'admin_home_' %}active{% endif %}">
                 <a class="nav-link" href="{{ path('admin_home_index') }}">Home</a>
             </li>
+            <li class="nav-item {% if app.request.attributes.get( '_route' ) starts with 'admin_product_' %}active{% endif %}">
+                <a class="nav-link" href="{{ path('admin_home_index') }}">Producten</a>
+            </li>
             <li class="nav-item {% if app.request.attributes.get( '_route' ) starts with 'admin_user_' %}active{% endif %}">
                 <a class="nav-link" href="#">Gebruikers</a>
             </li>

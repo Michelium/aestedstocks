@@ -1,0 +1,18 @@
+<div class="alert alert-danger">
+    <p class="m-0">Product met code  <strong>{{ input }}</strong> niet gevonden!</p>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h5>Kies uit een van de volgende opties</h5>
+        <button type="button" class="btn btn-success add-product-button">Toevoegen <i class="fa fa-plus"></i></button>
+    </div>
+</div>
+<div class="row d-none add-product-wrapper">
+    <div class="col-lg-12">
+        <hr>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Toevoegen</button>
+        {{ form_end(form) }}
+    </div>
+</div>
