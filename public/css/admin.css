@@ -1,3 +1,7 @@
+* {
+    font-family: 'Raleway', sans-serif;
+}
+
 /* Navbar */
 .navbar {
     min-height: 33px !important;
@@ -86,24 +90,32 @@
         padding-left: 8px;
     }
 }
-
+/* Sidebar */
 /* List group */
-.list-group > a {
+.sidebar .list-group > a {
     color: #ecf0f1;
 }
-
-.list-group > a:hover {
+.sidebar .list-group > a:hover {
     color: #ffbbbc;
 }
-
-.list-group > a.active {
+.sidebar .list-group > a.active {
     background-color: #e74c3c;
     border: none;
     font-weight: bolder;
+}
+.sidebar .credits {
+    font-size: 14px;
+    color: #c2c2c2;
 }
 
 /* Card */
 .card > .card-header {
     background-color: #e74c3c;
     border: none;
+}
+
+/* Home */
+button.scan {
+    height: 150px;
+    font-size: 50px;
 }

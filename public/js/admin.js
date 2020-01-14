@@ -15,5 +15,13 @@ $(document).ready(function () {
     //
     // titleToSlug();
 
+    function focusScannerOnInput() {
+        $('.scan').on('click', function () {
+            $('#scaninput').focus();
+        });
+    }
+
+    focusScannerOnInput();
+
 });
 

@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {{ encore_entry_link_tags('admin') }}
-    {{ encore_entry_script_tags('admin') }}
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.superhero.css') }}">
     <title>{{ websitename }} - {{ title|default('SET TITLE') }}</title>
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
 
 {% block header %}
-    {% include 'admin/sections/header.html.twig' %}
+    {% include 'sections/header.html.twig' %}
 {% endblock %}
 
 <div class="container-fluid">
@@ -28,7 +29,7 @@
     {% block totalbody %}
         <div class="row">
 
-            {% include 'admin/sections/sidebar.html.twig' %}
+            {% include 'sections/sidebar.html.twig' %}
 
             <div class="col-lg-8 col-sm-12">
                 <div class="card">
@@ -56,5 +57,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script src="{{ asset('js/admin.js') }}"></script>
 </body>
 </html>

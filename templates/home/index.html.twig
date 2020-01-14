@@ -1,5 +1,13 @@
-{% extends 'admin/base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
-    <h5>Welcome to the admin panel!</h5>
+    <h5>Welkom bij Stock!</h5>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <button class="btn btn-block btn-success mb-4 scan">Scan</button>
+            <input type="text" id="scaninput" class="form-control" autofocus>
+        </div>
+    </div>
+
 {% endblock %}

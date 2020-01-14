@@ -14,7 +14,6 @@ class User implements UserInterface {
 
     public function __construct() {
         $this->created_At = new \DateTime();
-        $this->pages = new ArrayCollection();
     }
 
     /**
@@ -54,11 +53,6 @@ class User implements UserInterface {
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $modified_at;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="created_by")
-     */
-    private $pages;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -165,37 +159,6 @@ class User implements UserInterface {
 
     public function setModifiedAt(\DateTimeInterface $modified_at): self {
         $this->modified_at = $modified_at;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Page[]
-     */
-    public function getPages(): Collection
-    {
-        return $this->pages;
-    }
-
-    public function addPage(Page $page): self
-    {
-        if (!$this->pages->contains($page)) {
-            $this->pages[] = $page;
-            $page->setCreatedBy($this);
-        }
-
-        return $this;
-    }
-
-    public function removePage(Page $page): self
-    {
-        if ($this->pages->contains($page)) {
-            $this->pages->removeElement($page);
-            // set the owning side to null (unless already changed)
-            if ($page->getCreatedBy() === $this) {
-                $page->setCreatedBy(null);
-            }
-        }
 
         return $this;
     }
