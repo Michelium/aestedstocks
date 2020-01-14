@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h5>Productenoverzicht</h5>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <button class="btn btn-success float-right mb-4"><i class="fa fa-plus"></i> Toevoegen</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-sm table-hover table-responsive-md">
+                <tr>
+                    <th>Naam</th>
+                    <th class="d-none d-md-block">Code</th>
+                    <th>Aangemaakt op</th>
+                    <th class="d-none d-md-block">Laatst bewerkt op</th>
+                    <th>Acties</th>
+                </tr>
+                {% for product in products  %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td class="d-none d-md-block">{{ product.code }}</td>
+                        <td>{{ product.createdAt|date('d-m-Y') }}</td>
+                        <td class="d-none d-md-block">{{ product.modifiedAt|date('d-m-Y') }}</td>
+                        <td>
+                            <button type="button" data-action="view" data-id="{{ product.id }}" class="btn btn-sm btn-info product_action_product_button"><i class="fa fa-eye"></i> Bekijken</button>
+                            <button type="button" data-action="update" data-id="{{ product.id }}" class="btn btn-sm btn-warning product_action_product_button"><i class="fa fa-pencil"></i> Bewerken</button>
+                            <a href="{{ path('admin_function_deleteproduct', {id : product.id}) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Verwijderen</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div class="product-modal modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="product-modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="product-modalLabel">Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Afsluiten</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

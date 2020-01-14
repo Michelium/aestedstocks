@@ -18,7 +18,7 @@ class AdminController extends AbstractController {
      */
     public function index() {
         return $this->render('home/index.html.twig', [
-            'title' => 'Home',
+            'title' => 'Scan',
         ]);
     }
 
@@ -35,43 +35,26 @@ class AdminController extends AbstractController {
         if ($product === null) {
             $productForm = $this->createForm(ProductType::class, null, [
                 'input' => $input,
-                'action' => $this->generateUrl('admin_home_addproduct'),
+                'action' => $this->generateUrl('admin_function_addproduct'),
             ]);
             $html = $this->renderView('sections/notfound.html.twig', [
                 'input' => $input,
                 'form' => $productForm->createView(),
             ]);
         } else {
+            $productForm = $this->createForm(ProductType::class, $product, [
+                'input' => $input,
+                'action' => $this->generateUrl('admin_function_updateproduct', [
+                    'id' => $product->getId(),
+                ]),
+            ]);
             $html = $this->renderView('sections/found.html.twig', [
                 'input' => $input,
                 'product' => $product,
+                'form' => $productForm->createView(),
             ]);
         }
 
         return new JsonResponse($html);
-    }
-
-    /**
-     * @Route("/admin/function/addproduct", name="admin_home_addproduct")
-     * @param Request $request
-     * @return RedirectResponse
-     * @throws Exception
-     */
-    public function addProduct(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-
-        $data = $request->request->get('product');
-
-        $product = new Product();
-        $product->setName($data['name']);
-        $product->setCode($data['code']);
-        $product->setDescription($data['description']);
-        $product->setCreatedAt(new \DateTime('now'));
-
-        $em->persist($product);
-        $em->flush();
-
-        $this->addFlash('success', 'Het product met code '. $data['code'] . ' is succesvol toegevoegd!');
-        return $this->redirectToRoute('admin_home_index');
     }
 }

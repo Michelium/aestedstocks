@@ -32,6 +32,15 @@
         <h5>Kies uit een van de volgende opties</h5>
         <button type="button" class="btn btn-info stock-update-product-button">Voorraad aanpassen <i class="fa fa-cabinet-filing"></i></button>
         <button type="button" class="btn btn-warning update-product-button">Bewerken <i class="fa fa-pencil"></i></button>
-        <button type="button" class="btn btn-danger delete-product-button">Verwijderen <i class="fa fa-trash"></i></button>
+        <a href="{{ path('admin_function_deleteproduct', {id : product.id}) }}" type="button" class="btn btn-danger delete-product-button">Verwijderen <i class="fa fa-trash"></i></a>
+    </div>
+</div>
+<div class="row d-none update-product-wrapper">
+    <div class="col-lg-12">
+        <hr>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-warning btn-sm float-right"><i class="fa fa-pencil"></i> Bewerken</button>
+        {{ form_end(form) }}
     </div>
 </div>

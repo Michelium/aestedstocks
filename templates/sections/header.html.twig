@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item {% if app.request.attributes.get( '_route' ) starts with 'admin_home_' %}active{% endif %}">
-                <a class="nav-link" href="{{ path('admin_home_index') }}">Home</a>
+                <a class="nav-link" href="{{ path('admin_home_index') }}">Scan</a>
             </li>
             <li class="nav-item {% if app.request.attributes.get( '_route' ) starts with 'admin_product_' %}active{% endif %}">
-                <a class="nav-link" href="{{ path('admin_home_index') }}">Producten</a>
+                <a class="nav-link" href="{{ path('admin_product_index') }}">Producten</a>
             </li>
             <li class="nav-item {% if app.request.attributes.get( '_route' ) starts with 'admin_user_' %}active{% endif %}">
                 <a class="nav-link" href="#">Gebruikers</a>

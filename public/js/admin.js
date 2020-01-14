@@ -30,8 +30,8 @@ $(document).ready(function () {
                 $('.scan_output-modal').modal('show');
                 let input = $(this).val();
 
-                var getUrl = window.location;
-                var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+                const getUrl = window.location;
+                let baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
                 if (baseUrl.search('localhost') !== -1) {
                     baseUrl += '/public';
                 }
@@ -45,14 +45,47 @@ $(document).ready(function () {
                     $('#product_name').focus();
                 });
 
+                //FOUND
+                $(document).on('click', '.scan_output-modal .update-product-button', function () {
+                    $('.update-product-wrapper').removeClass('d-none');
+                    $('#product_name').focus();
+                });
+
                 $(this).val('');
                 e.preventDefault();
             }
         });
     }
 
+    function productPage() {
+        $('.product_action_product_button').on('click', function () {
+            $('.product-modal').modal('show');
+            const id = $(this).data('id');
+            const action = $(this).data('action');
+            const getUrl = window.location;
+            let baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+            if (baseUrl.search('localhost') !== -1) {
+                baseUrl += '/public';
+            }
+
+            if (action === 'update') {
+                $('.product-modal .modal-body').html('');
+                $.get(baseUrl + "/admin/function/updateproductform/"+id, function (data) {
+                    $('.product-modal .modal-body').html(data);
+                });
+            } else if (action === 'view') {
+                $('.product-modal .modal-body').html('');
+                $.get(baseUrl + "/admin/function/showproduct/"+id, function (data) {
+                    $('.product-modal .modal-body').html(data);
+                });
+            }
+
+        });
+    }
+
     focusScannerOnInput();
     handleScannerModal();
+    productPage();
 
 });
 

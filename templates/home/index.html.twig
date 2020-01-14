@@ -2,16 +2,16 @@
 
 {% block body %}
     <h5>Welkom bij Stock!</h5>
+    <p>Klik op de knop of op het invulveld en scan vervolgens het product.</p>
     <hr>
     <div class="row">
         <div class="col-lg-12">
             <button class="btn btn-block btn-success mb-4 scan">Scan</button>
-            <input type="text" id="scan_input" class="form-control" autofocus>
+            <input type="text" id="scan_input" placeholder="Typ een code of scan een product" class="form-control" autofocus>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12 scan_output">
-
             <div class="scan_output-modal modal fade" id="scan_output-modal" tabindex="-1" role="dialog" aria-labelledby="scan_output-modalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -30,7 +30,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
