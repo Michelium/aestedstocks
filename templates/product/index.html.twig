@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h5>Productenoverzicht</h5>
+    <h2>Productenoverzicht</h2>
     <hr>
     <div class="row">
         <div class="col-lg-12">
@@ -12,6 +12,7 @@
         <div class="col-lg-12">
             <table class="table table-sm table-hover table-responsive-md">
                 <tr>
+                    <th>V</th>
                     <th>Naam</th>
                     <th class="d-none d-md-block">Code</th>
                     <th>Aangemaakt op</th>
@@ -20,6 +21,7 @@
                 </tr>
                 {% for product in products  %}
                     <tr>
+                        <td>{{ product.stock }}</td>
                         <td>{{ product.name }}</td>
                         <td class="d-none d-md-block">{{ product.code }}</td>
                         <td>{{ product.createdAt|date('d-m-Y') }}</td>

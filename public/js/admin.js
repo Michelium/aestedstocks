@@ -19,6 +19,9 @@ $(document).ready(function () {
         $('.scan').on('click', function () {
             $('#scan_input').focus();
         });
+        $('.scan_multiple_button').on('click', function () {
+            $('#scan_multiple_input').focus();
+        });
         $('.close-modal').on('click', function () {
             $('#scan_input').focus();
         });
@@ -57,6 +60,44 @@ $(document).ready(function () {
         });
     }
 
+    function scanMultipleProducts() {
+        const getUrl = window.location;
+        let baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+        if (baseUrl.search('localhost') !== -1) {
+            baseUrl += '/public/admin';
+        }
+
+        $('#scan_multiple_input').keypress(function (e) {
+            if (e.which === 13) {
+                let id = $(this).val();
+                $.get(baseUrl + "/function/addproducttolist/"+id, function (data) {
+                    $('.scan_multiple_table tr:last').after(data);
+                });
+                $(this).val('');
+                $(this).focus();
+            }
+        });
+
+        $('.scan_multiple_submit').on('click', function () {
+            $.ajax({
+                url: baseUrl + "/function/submitproductlist",
+                method: 'POST',
+                data: { items: getListItems() },
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+    }
+
+    function getListItems() {
+        const items = [];
+        $('.scan_multiple_table tr:not(:first-of-type)').each(function () {
+            items.push($(this).attr('data-id'));
+        });
+        return items;
+    }
+
     function productPage() {
         $('.product_action_product_button').on('click', function () {
             $('.product-modal').modal('show');
@@ -65,12 +106,12 @@ $(document).ready(function () {
             const getUrl = window.location;
             let baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
             if (baseUrl.search('localhost') !== -1) {
-                baseUrl += '/public';
+                baseUrl += '/public/admin';
             }
 
             if (action === 'update') {
                 $('.product-modal .modal-body').html('');
-                $.get(baseUrl + "/admin/function/updateproductform/"+id, function (data) {
+                $.get(baseUrl + "/function/updateproductform/"+id, function (data) {
                     $('.product-modal .modal-body').html(data);
                 });
             } else if (action === 'view') {
@@ -85,6 +126,7 @@ $(document).ready(function () {
 
     focusScannerOnInput();
     handleScannerModal();
+    scanMultipleProducts();
     productPage();
 
 });

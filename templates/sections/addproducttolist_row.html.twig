@@ -1,0 +1,13 @@
+{% if found == true %}
+    <tr data-id="{{ product.id }}">
+        <td>{{ product.name }}</td>
+        <td>{{ product.code }}</td>
+        <td>delete</td>
+    </tr>
+{% else %}
+    <tr>
+        <td><div class="alert-danger p-1 text-white">Product niet gevonden!</div></td>
+        <td></td>
+        <td></td>
+    </tr>
+{% endif %}

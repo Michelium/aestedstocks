@@ -57,4 +57,50 @@ class AdminController extends AbstractController {
 
         return new JsonResponse($html);
     }
+
+    /**
+     *
+     * @Route("/admin/function/addproducttolist/{input}", name="admin_home_addproducttolist")
+     * @param $input
+     * @return JsonResponse
+     */
+    public function addProductToMultipleList($input) {
+        $em = $this->getDoctrine()->getManager();
+
+        $product = $em->getRepository(Product::class)->findOneBy(["code" => $input]);
+
+        if ($product === null) {
+            $html = $this->renderView('sections/addproducttolist_row.html.twig', ['found' => false]);
+        } else {
+            $html = $this->renderView('sections/addproducttolist_row.html.twig', [
+                'found' => true,
+                'product' => $product,
+            ]);
+        }
+
+        return new JsonResponse($html);
+    }
+
+    /**
+     * @Route("/admin/function/submitproductlist", name="admin_home_submitproductlist")
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function submitProductList(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $items = $request->get('items');
+
+        $counted = array_count_values($items);
+
+        foreach ($counted as $key => $value) {
+            $product = $em->getRepository(Product::class)->find($key);
+            $product->setStock($product->getStock() + $value);
+
+            $em->persist($product);
+            $em->flush();
+            unset($product);
+        }
+
+        return new JsonResponse($counted);
+    }
 }

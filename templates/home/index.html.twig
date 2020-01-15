@@ -1,12 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h5>Welkom bij Stock!</h5>
-    <p>Klik op de knop of op het invulveld en scan vervolgens het product.</p>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Welkom bij Stock!</h2>
+        </div>
+    </div>
     <hr>
     <div class="row">
         <div class="col-lg-12">
-            <button class="btn btn-block btn-success mb-4 scan">Scan</button>
+            <h5>Scan productinformatie</h5>
+            <p>Scan een enkel product en krijg de productinformatie</p>
+            <button class="btn btn-block btn-info mb-4 scan">Scan</button>
             <input type="text" id="scan_input" placeholder="Typ een code of scan een product" class="form-control" autofocus>
         </div>
     </div>
@@ -33,4 +38,25 @@
         </div>
     </div>
 
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <h5>Scanlijst</h5>
+            <p>Scan hieronder meerdere producten</p>
+            <button class="btn btn-block btn-info mb-4 scan_multiple_button">Scan</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="text" id="scan_multiple_input" placeholder="Typ een code of scan een product" class="form-control" autofocus>
+            <table class="table table-bordered table-hover table-sm mt-4 scan_multiple_table" data-route="">
+                <tr>
+                    <th>Product</th>
+                    <th>Code</th>
+                    <th>Acties</th>
+                </tr>
+            </table>
+            <button class="btn btn-success btn-sm scan_multiple_submit" type="button">Bovenstaande lijst invoeren</button>
+        </div>
+    </div>
 {% endblock %}
