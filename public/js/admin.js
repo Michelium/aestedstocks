@@ -36,9 +36,9 @@ $(document).ready(function () {
                 const getUrl = window.location;
                 let baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
                 if (baseUrl.search('localhost') !== -1) {
-                    baseUrl += '/public';
+                    baseUrl += '/public/admin';
                 }
-                $.get(baseUrl + "/admin/function/scaninput/" + input, function (data) {
+                $.get(baseUrl + "/function/scaninput/" + input, function (data) {
                     $('.scan_output-modal .modal-body').html(data);
                 });
 

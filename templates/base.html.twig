@@ -1,12 +1,13 @@
+{% set v = '0.0.1' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.superhero.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}?v={{ v }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.superhero.css') }}?v={{ v }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.css') }}?v={{ v }}">
     <title>{{ websitename }} - {{ title|default('SET TITLE') }}</title>
     {% block stylesheets %}{% endblock %}
 </head>
@@ -58,7 +59,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-<script src="{{ asset('js/admin.js') }}"></script>
+<script src="{{ asset('js/admin.js') }}?v={{ v }}"></script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>
