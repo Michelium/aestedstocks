@@ -71,7 +71,7 @@ $(document).ready(function () {
             if (e.which === 13) {
                 let id = $(this).val();
                 $.get(baseUrl + "/function/addproducttolist/" + id, function (data) {
-                    $('.scan_multiple_table tr:last').after(data);
+                    $('.scan_multiple_table tbody').append(data);
                 });
                 $(this).val('');
                 $(this).focus();
@@ -95,6 +95,7 @@ $(document).ready(function () {
                         '<button type="button" class="close" data-dismiss="alert">&times;</button>\n' +
                         'Producten succesvol toegevoegd!' +
                         '</div>');
+                    $('.scan_multiple_table tbody').empty();
                 },
                 error: function () {
                     alertBox.html('');
