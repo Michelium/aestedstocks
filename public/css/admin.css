@@ -115,3 +115,7 @@
 }
 
 /* Home */
+.scan_multiple_table p:hover {
+    cursor: pointer;
+    color: #D23430;
+}

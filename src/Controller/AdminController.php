@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Json;
 
 class AdminController extends AbstractController {
 
@@ -86,7 +87,7 @@ class AdminController extends AbstractController {
      * @param Request $request
      * @return JsonResponse
      */
-    public function submitProductList(Request $request) {
+    public function submitMultipleProductList(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $items = $request->get('items');
 

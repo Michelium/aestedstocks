@@ -38,7 +38,7 @@ $(document).ready(function () {
                 if (baseUrl.search('localhost') !== -1) {
                     baseUrl += '/public';
                 }
-                $.get(baseUrl + "/admin/function/scaninput/"+input, function (data) {
+                $.get(baseUrl + "/admin/function/scaninput/" + input, function (data) {
                     $('.scan_output-modal .modal-body').html(data);
                 });
 
@@ -70,7 +70,7 @@ $(document).ready(function () {
         $('#scan_multiple_input').keypress(function (e) {
             if (e.which === 13) {
                 let id = $(this).val();
-                $.get(baseUrl + "/function/addproducttolist/"+id, function (data) {
+                $.get(baseUrl + "/function/addproducttolist/" + id, function (data) {
                     $('.scan_multiple_table tr:last').after(data);
                 });
                 $(this).val('');
@@ -78,18 +78,35 @@ $(document).ready(function () {
             }
         });
 
+        $(document).on('click', '.scan_multiple_delete-button', function () {
+            $(this).parent().parent().remove();
+        });
+
         $('.scan_multiple_submit').on('click', function () {
+            let alertBox = $('.scan_multiple_alert-box');
             $.ajax({
                 url: baseUrl + "/function/submitproductlist",
                 method: 'POST',
-                data: { items: getListItems() },
+                data: {items: getListItems()},
                 success: function (data) {
-                    console.log(data);
+                    alertBox.html('');
+                    alertBox.append('' +
+                        '<div class="alert alert-success alert-dismissible fade show">\n' +
+                        '<button type="button" class="close" data-dismiss="alert">&times;</button>\n' +
+                        'Producten succesvol toegevoegd!' +
+                        '</div>');
+                },
+                error: function () {
+                    alertBox.html('');
+                    alertBox.append('' +
+                        '<div class="alert alert-danger alert-dismissible fade show">\n' +
+                        '<button type="button" class="close" data-dismiss="alert">&times;</button>\n' +
+                        'Oops! Er is iets misgegaan. Vraag de CEO!' +
+                        '</div>');
                 }
             });
         });
     }
-
     function getListItems() {
         const items = [];
         $('.scan_multiple_table tr:not(:first-of-type)').each(function () {
@@ -111,12 +128,12 @@ $(document).ready(function () {
 
             if (action === 'update') {
                 $('.product-modal .modal-body').html('');
-                $.get(baseUrl + "/function/updateproductform/"+id, function (data) {
+                $.get(baseUrl + "/function/updateproductform/" + id, function (data) {
                     $('.product-modal .modal-body').html(data);
                 });
             } else if (action === 'view') {
                 $('.product-modal .modal-body').html('');
-                $.get(baseUrl + "/admin/function/showproduct/"+id, function (data) {
+                $.get(baseUrl + "/function/showproduct/" + id, function (data) {
                     $('.product-modal .modal-body').html(data);
                 });
             }
