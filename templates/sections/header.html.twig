@@ -12,6 +12,9 @@
             <li class="nav-item {% if app.request.attributes.get( '_route' ) starts with 'admin_product_' %}active{% endif %}">
                 <a class="nav-link" href="{{ path('admin_product_index') }}">Producten</a>
             </li>
+            <li class="nav-item {% if app.request.attributes.get( '_route' ) starts with 'admin_category_' %}active{% endif %}">
+                <a class="nav-link" href="{{ path('admin_category_index') }}">Categoriën</a>
+            </li>
             <li class="nav-item {% if app.request.attributes.get( '_route' ) starts with 'admin_user_' %}active{% endif %}">
                 <a class="nav-link" href="#">Gebruikers</a>
             </li>

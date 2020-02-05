@@ -1,19 +1,10 @@
 $(document).ready(function () {
 
-    // function titleToSlug() {
-    //     let titlefield = $('.titlefield');
-    //     let slugfield = $('.slugfield');
-    //
-    //     titlefield.on('change', function () {
-    //         let Text = $(this).val();
-    //         Text = Text.toLowerCase();
-    //         Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
-    //         slugfield.val(Text);
-    //     })
-    // }
-    //
-    //
-    // titleToSlug();
+    const getUrl = window.location;
+    let baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    if (baseUrl.search('localhost') !== -1) {
+        baseUrl += '/public/admin';
+    }
 
     function focusScannerOnInput() {
         $('.scan').on('click', function () {
@@ -121,11 +112,6 @@ $(document).ready(function () {
             $('.product-modal').modal('show');
             const id = $(this).data('id');
             const action = $(this).data('action');
-            const getUrl = window.location;
-            let baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
-            if (baseUrl.search('localhost') !== -1) {
-                baseUrl += '/public/admin';
-            }
 
             if (action === 'update') {
                 $('.product-modal .modal-body').html('');
@@ -142,10 +128,40 @@ $(document).ready(function () {
         });
     }
 
+    function categoryPage() {
+        $('.category_add_category_button').on('click', function () {
+
+
+        });
+
+        $('.category_action_category_button').on('click', function () {
+            const id = $(this).data('id');
+            const action = $(this).data('action');
+
+            $('.category-modal').modal('show');
+            $('.category-modal .modal-body').html('');
+
+            switch (action) {
+                case 'add':
+                    $.get(baseUrl + "/function/categoryform", function (data) {
+                        $('.category-modal .modal-body').html(data);
+                    });
+                    break;
+                case 'update':
+                    $.get(baseUrl + "/function/categoryform/" + id, function (data) {
+                        $('.category-modal .modal-body').html(data);
+                    });
+                    break;
+            }
+
+        });
+    }
+
     focusScannerOnInput();
     handleScannerModal();
     scanMultipleProducts();
     productPage();
+    categoryPage();
 
 });
 

@@ -137,7 +137,7 @@ class ProductController extends AbstractController
      * @param $id
      * @return JsonResponse
      */
-    public function show($id) {
+    public function showProduct($id) {
         $em = $this->getDoctrine()->getManager();
 
         $product = $em->getRepository(Product::class)->find($id);

@@ -8,6 +8,10 @@
             Producten
 {#            <span class="badge badge-light badge-pill">14</span>#}
         </a>
+        <a href="{{ path('admin_category_index') }}" class="{% if app.request.attributes.get( '_route' ) starts with 'admin_category_' %}active{% endif %} nav-link list-group-item d-flex justify-content-between align-items-center">
+            Categoriën
+{#            <span class="badge badge-light badge-pill">14</span>#}
+        </a>
         <a href="" class="{% if app.request.attributes.get( '_route' ) starts with 'admin_user_' %}active{% endif %} nav-link list-group-item d-flex justify-content-between align-items-center">
             Gebruikers
 {#            <span class="badge badge-light badge-pill">14</span>#}

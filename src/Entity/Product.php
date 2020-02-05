@@ -57,6 +57,13 @@ class Product {
      */
     private $modified_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+
     public function getId(): ?int {
         return $this->id;
     }
@@ -127,6 +134,18 @@ class Product {
 
     public function setModifiedAt(?\DateTimeInterface $modified_at): self {
         $this->modified_at = $modified_at;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
