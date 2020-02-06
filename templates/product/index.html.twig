@@ -6,17 +6,12 @@
 
 {% block body %}
     <h2>Productenoverzicht</h2>
-    <hr>
-    <div class="row">
-        <div class="col-lg-12">
-            <button class="btn btn-success float-right mb-4"><i class="fa fa-plus"></i> Toevoegen</button>
-        </div>
-    </div>
     <div class="row">
         <div class="col-lg-12">
             <table class="table table-sm table-hover table-responsive-md" id="product_table">
                 <tr>
                     <th>V</th>
+                    <th>Categorie</th>
                     <th>Naam</th>
                     <th class="d-none d-md-block">Code</th>
                     <th>Aangemaakt op</th>
@@ -26,6 +21,7 @@
                 {% for product in products  %}
                     <tr>
                         <td>{{ product.stock }}</td>
+                        <td>{{ product.category.name }}</td>
                         <td>{{ product.name }}</td>
                         <td class="d-none d-md-block">{{ product.code }}</td>
                         <td>{{ product.createdAt|date('d-m-Y') }}</td>

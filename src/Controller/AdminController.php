@@ -84,18 +84,22 @@ class AdminController extends AbstractController {
 
     /**
      * @Route("/admin/function/submitproductlist", name="admin_home_submitproductlist")
-     * @param Request $request
-     * @return JsonResponse
      */
     public function submitMultipleProductList(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $items = $request->get('items');
+        $type = $request->get('type');
 
         $counted = array_count_values($items);
 
         foreach ($counted as $key => $value) {
             $product = $em->getRepository(Product::class)->find($key);
-            $product->setStock($product->getStock() + $value);
+                if ($type === 'add') {
+                    $product->setStock($product->getStock() + $value);
+                } elseif ($type === 'remove') {
+                    // TODO: fix meerdere product erafhalen van voorraad
+                    $product->setStock($product->getStock() - $value);
+                }
 
             $em->persist($product);
             $em->flush();

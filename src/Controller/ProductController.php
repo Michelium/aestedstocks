@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Product;
 use App\Form\ProductType;
 use Exception;
@@ -42,6 +43,8 @@ class ProductController extends AbstractController
         $product->setName($data['name']);
         $product->setCode($data['code']);
         $product->setDescription($data['description']);
+        $category = $em->getRepository(Category::class)->find($data['category']);
+        $product->setCategory($category);
         $product->setCreatedAt(new \DateTime('now'));
 
         $em->persist($product);
@@ -98,6 +101,8 @@ class ProductController extends AbstractController
             $product->setName($data['name']);
             $product->setCode($data['code']);
             $product->setDescription($data['description']);
+            $category = $em->getRepository(Category::class)->find($data['category']);
+            $product->setCategory($category);
             $product->setModifiedAt(new \DateTime('now'));
 
             $em->persist($product);
